@@ -1,0 +1,6 @@
+build
+
+include/piga/devkit/Config.hpp
+
+devkit.kdev4
+.kdev*
