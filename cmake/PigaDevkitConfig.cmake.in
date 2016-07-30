@@ -1,0 +1,20 @@
+# Defines
+#    - PigaDevkit_EXECUTABLE
+#    - PigaDevkit_INCLUDE_DIRS
+
+find_program(PigaDevkit_EXECUTABLE pigadevkit
+    PATHS ${CMAKE_INSTALL_PREFIX}/bin
+    HINTS pigadevkit 
+)
+
+find_path(PigaDevkit_INCLUDE_DIRS piga/devkit/Config.hpp
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+    NO_DEFAULT_PATH
+)
+
+list(APPEND CMAKE_MODULE_PATH "${PigaDevkit_INCLUDE_DIRS}/../lib/cmake/piga")
+find_package(Boost REQUIRED COMPONENTS system asio program_options serialization filesystem)
+
+# Add boost
+list(APPEND PigaDevkit_LIBRARIES ${Boost_LIBRARIES})
+list(APPEND PigaDevkit_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})
